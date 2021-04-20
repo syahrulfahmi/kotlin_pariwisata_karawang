@@ -13,9 +13,6 @@ fun ImageView.loadUrl(
     imageUrl: String?,
     diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.RESOURCE
 ) {
-    //Because our image is stored in AWS which it's URL is keep changing
-    // over time, and failing the cache system. So we need to make custom glide url
-    // to take only the url path as a cache key
     val glideUrl = object : GlideUrl(imageUrl) {
         override fun getCacheKey(): String {
             val url = toStringUrl()

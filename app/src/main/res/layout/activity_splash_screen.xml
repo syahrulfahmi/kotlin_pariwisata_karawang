@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".SplashScreenActivity">
+    tools:context=".activity.SplashScreenActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_black"
-        android:text="Pariwisata \nKarawawang"
+        android:text="@string/app_splash_screen"
         android:textColor="@color/white"
         android:textSize="@dimen/fontXXL"
         android:textStyle="bold"

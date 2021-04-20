@@ -6,11 +6,13 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
         <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/fontM</item>
     </style>
 
     <style name="Theme.PariwisataKarawang.NoActionBar" parent="Theme.PariwisataKarawang">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
@@ -20,7 +22,28 @@
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
-        <!--        <item name="cornerSizeBottomRight">25dp</item>-->
+    </style>
+
+    <style name="Theme.PariwisataKarawang.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.PariwisataKarawang.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.PariwisataKarawang.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.PariwisataKarawang.NoActionBar.Fullscreen" parent="Theme.PariwisataKarawang.NoActionBar">
+        <item name="android:actionBarStyle">
+            @style/Widget.Theme.PariwisataKarawang.NoActionBar.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.PariwisataKarawang.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 
 </resources>

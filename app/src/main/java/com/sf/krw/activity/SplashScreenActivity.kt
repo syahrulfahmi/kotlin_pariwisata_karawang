@@ -1,4 +1,4 @@
-package com.sf.krw
+package com.sf.krw.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,8 @@ import com.sf.krw.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivitySplashScreenBinding
+    private lateinit var binding: ActivitySplashScreenBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +20,10 @@ class SplashScreenActivity : AppCompatActivity() {
         setUpSplashScreen()
     }
 
+
     private fun setUpSplashScreen() {
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }, 1500)

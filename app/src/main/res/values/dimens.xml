@@ -24,6 +24,9 @@
     <dimen name="marginXXXL">48dp</dimen>
     <dimen name="marginX5L">60dp</dimen>
 
+    <dimen name="heigthOdd">240dp</dimen>
+    <dimen name="heigthEven">190dp</dimen>
+
     <dimen name="fontXXS">8sp</dimen>
     <dimen name="fontXS">10sp</dimen>
     <dimen name="fontS">12sp</dimen>
@@ -45,5 +48,11 @@
     <dimen name="sizeXXL">70dp</dimen>
     <dimen name="sizeXXXL">80dp</dimen>
     <dimen name="sizeXXXXL">90dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 
 </resources>

@@ -21,7 +21,9 @@ abstract class BaseActivityBinding<T : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = bindingInflater.invoke(layoutInflater)
-        setContentView(requireNotNull(_binding).root)
+
+        setContentView(binding.root)
+        setUpView(binding)
     }
 
     abstract fun setUpView(binding: T)

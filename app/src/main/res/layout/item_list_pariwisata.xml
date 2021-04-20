@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/marginS"
+        android:layout_marginVertical="@dimen/marginM">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imagePariwisata"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/marginS"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textPariwisataName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginL"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_black"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/fontL"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/imagePariwisata"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imagePariwisata"
+            tools:maxLines="2"
+            tools:text="@tools:sample/lorem/random" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textPariwisataLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginL"
+            android:layout_marginTop="@dimen/marginXS"
+            android:ellipsize="end"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/fontS"
+            app:layout_constraintLeft_toRightOf="@id/imagePariwisata"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textPariwisataName"
+            tools:maxLines="1"
+            tools:text="@tools:sample/lorem/random" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
