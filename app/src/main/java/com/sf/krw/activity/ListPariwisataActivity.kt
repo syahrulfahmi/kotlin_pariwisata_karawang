@@ -1,10 +1,12 @@
 package com.sf.krw.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.sf.krw.R
 import com.sf.krw.adapter.ListPariwisataAdapter
@@ -38,16 +40,17 @@ class ListPariwisataActivity : BaseActivityBinding<ActivityListPariwisataBinding
                 this,
                 getString(R.string.app_try_connect_again),
                 null,
-                { dialogInterface, _ ->
+                DialogInterface.OnClickListener { dialogInterface, which ->
                     checkNetworkState()
                     dialogInterface.dismiss()
-                })
+                }
+            )
         }
     }
 
     private fun getData() = with(binding) {
         viewModel.getListPariwisataByCategory(idCategory)
-        viewModel.isProcess.observe(this@ListPariwisataActivity, {
+        viewModel.isProcess.observe(this@ListPariwisataActivity, Observer{
             if (it) {
                 progressLoading.visibility = View.VISIBLE
                 recyclerViewPariwisata.visibility = View.GONE
@@ -57,7 +60,7 @@ class ListPariwisataActivity : BaseActivityBinding<ActivityListPariwisataBinding
             }
         })
 
-        viewModel.isSuccess.observe(this@ListPariwisataActivity, {
+        viewModel.isSuccess.observe(this@ListPariwisataActivity, Observer{
             if (!it) {
                 Snackbar.make(
                     containerListPariwisata,
@@ -67,13 +70,13 @@ class ListPariwisataActivity : BaseActivityBinding<ActivityListPariwisataBinding
             }
         })
 
-        viewModel.listPariwisataResponse.observe(this@ListPariwisataActivity, {
+        viewModel.listPariwisataResponse.observe(this@ListPariwisataActivity, Observer{
             recyclerViewPariwisata.adapter = ListPariwisataAdapter(it.data, this@ListPariwisataActivity)
         })
     }
 
     private fun getExtra() {
-        val data = if (intent.hasExtra(Extra.DATA)) intent.extras?.getInt(
+        val data = if (intent.hasExtra(Extra.DATA)) intent.extras?.getString(
             Extra.DATA
         ) else ""
         try {

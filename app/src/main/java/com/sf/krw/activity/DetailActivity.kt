@@ -1,11 +1,13 @@
 package com.sf.krw.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.sf.krw.R
@@ -38,16 +40,17 @@ class DetailActivity : BaseActivityBinding<ActivityDetailPariwisataBinding>(),
                 this,
                 getString(R.string.app_try_connect_again),
                 null,
-                { dialogInterface, _ ->
+                DialogInterface.OnClickListener { dialogInterface, _ ->
                     checkNetworkState()
                     dialogInterface.dismiss()
-                })
+                }
+            )
         }
     }
 
     private fun getDataDetail() = with(binding) {
         viewModel.getDetail(idPariwisata)
-        viewModel.isProcess.observe(this@DetailActivity, {
+        viewModel.isProcess.observe(this@DetailActivity, Observer {
             if (it) {
                 progressLoading.visibility = View.VISIBLE
                 recyclerviewOtherImages.visibility = View.GONE
@@ -57,7 +60,7 @@ class DetailActivity : BaseActivityBinding<ActivityDetailPariwisataBinding>(),
             }
         })
 
-        viewModel.isSuccess.observe(this@DetailActivity, {
+        viewModel.isSuccess.observe(this@DetailActivity, Observer {
             if (!it) {
                 Snackbar.make(
                     containerDetail,
@@ -67,7 +70,7 @@ class DetailActivity : BaseActivityBinding<ActivityDetailPariwisataBinding>(),
             }
         })
 
-        viewModel.detailPariwisataResponse.observe(this@DetailActivity, {
+        viewModel.detailPariwisataResponse.observe(this@DetailActivity, Observer {
             with(binding) {
                 it.data.let { data ->
                     textCost.text = data.parCost

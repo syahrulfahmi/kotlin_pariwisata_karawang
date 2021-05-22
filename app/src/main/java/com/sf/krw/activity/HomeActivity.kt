@@ -1,9 +1,11 @@
 package com.sf.krw.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.sf.krw.R
@@ -42,10 +44,11 @@ class HomeActivity : BaseActivityBinding<ActivityMainBinding>(), PariwisataAdapt
                 this,
                 getString(R.string.app_try_connect_again),
                 null,
-                { dialogInterface, _ ->
+                DialogInterface.OnClickListener { dialogInterface, which ->
                     checkNetworkState()
                     dialogInterface.dismiss()
-                })
+                }
+            )
         }
     }
 
@@ -58,7 +61,7 @@ class HomeActivity : BaseActivityBinding<ActivityMainBinding>(), PariwisataAdapt
 
     private fun getData() = with(binding) {
         viewModel.getHome()
-        viewModel.isProcess.observe(this@HomeActivity, {
+        viewModel.isProcess.observe(this@HomeActivity,Observer {
             if (it) {
                 progressLoading.visibility = View.VISIBLE
                 containerListHome.visibility = View.GONE
@@ -68,7 +71,7 @@ class HomeActivity : BaseActivityBinding<ActivityMainBinding>(), PariwisataAdapt
             }
         })
 
-        viewModel.isSuccess.observe(this@HomeActivity, {
+        viewModel.isSuccess.observe(this@HomeActivity,Observer {
             if (!it) {
                 Snackbar.make(
                     containerHome,
@@ -78,7 +81,7 @@ class HomeActivity : BaseActivityBinding<ActivityMainBinding>(), PariwisataAdapt
             }
         })
 
-        viewModel.homeResponse.observe(this@HomeActivity, {
+        viewModel.homeResponse.observe(this@HomeActivity, Observer{
             itemListPariwisata.addAll(it.data.destinations)
             itemListCategory.addAll(it.data.category)
             pariwisataAdapter = PariwisataAdapter(itemListPariwisata, this@HomeActivity)
@@ -100,7 +103,7 @@ class HomeActivity : BaseActivityBinding<ActivityMainBinding>(), PariwisataAdapt
 
     override fun changeActivity(catId: Int) {
         val intent = Intent(this, ListPariwisataActivity::class.java).apply {
-            putExtra(Extra.DATA, catId)
+            putExtra(Extra.DATA, catId.toString())
         }
         startActivity(intent)
     }
